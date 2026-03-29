@@ -29,7 +29,6 @@ public class ProdutosController {
 
     @GetMapping("/{id}")
     public Produto buscarPorId(@PathVariable("id") String id) {
-        Optional<Produto> produto = this.produtoRepository.findById(id);
-        return produto.isPresent() ? produto.get() : null;
+        return this.produtoRepository.findById(id).orElse(null);
     }
 }
