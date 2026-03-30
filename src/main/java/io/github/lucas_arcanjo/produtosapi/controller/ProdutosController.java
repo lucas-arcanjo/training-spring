@@ -2,8 +2,10 @@ package io.github.lucas_arcanjo.produtosapi.controller;
 
 import io.github.lucas_arcanjo.produtosapi.model.Produto;
 import io.github.lucas_arcanjo.produtosapi.repository.ProdutoRepository;
+import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -42,5 +44,12 @@ public class ProdutosController {
                           @RequestBody Produto produto) {
         produto.setId(id);
         this.produtoRepository.save(produto);
+    }
+
+    @GetMapping
+    public List<Produto> buscarPorNome(@PathParam() String nome) {
+        this.produtoRepository.findByName(nome);
+
+
     }
 }
